@@ -17,17 +17,17 @@ namespace ToursAppNet
     {
         private static ToursEntities _context;
 
-        public ToursEntities()
-            : base("name=ToursEntities")
-        {
-        }
-
         public static ToursEntities GetContext()
         {
             if (_context == null)
                 _context = new ToursEntities();
 
             return _context;
+        }
+
+        public ToursEntities()
+            : base("name=ToursEntities")
+        {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
