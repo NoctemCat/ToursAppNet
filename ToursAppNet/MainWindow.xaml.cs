@@ -23,7 +23,7 @@ namespace ToursAppNet
         public MainWindow()
         {
             InitializeComponent();
-            MainFrameID.Navigate(new HotelsPage());
+            MainFrameID.Navigate(new ToursPage());
             Manager.MainFrame = MainFrameID;
         }
 
