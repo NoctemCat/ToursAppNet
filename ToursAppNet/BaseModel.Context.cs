@@ -15,14 +15,14 @@ namespace ToursAppNet
     
     public partial class ToursEntities : DbContext
     {
-        private static ToursEntities _context;
+        static ToursEntities context_ = null;
 
         public static ToursEntities GetContext()
         {
-            if (_context == null)
-                _context = new ToursEntities();
+            if (context_ == null)
+                context_ = new ToursEntities();
 
-            return _context;
+            return context_;
         }
 
         public ToursEntities()

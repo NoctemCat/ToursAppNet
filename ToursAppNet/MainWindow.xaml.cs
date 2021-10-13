@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +28,35 @@ namespace ToursAppNet
             InitializeComponent();
             MainFrameID.Navigate(new ToursPage());
             Manager.MainFrame = MainFrameID;
+
+            //ImportTours();
+        }
+
+        private void ImportTours()
+        {
+            string[] images = Directory.GetFiles(@"D:\Колледж\Управление и автоматизация баз данных\курс3\Ресурсы\Туры фото");
+
+            foreach (string image in images)
+            {
+                string filename = System.IO.Path.GetFileNameWithoutExtension(image).ToLower();
+                
+                try
+                {
+                    ToursEntities context = ToursEntities.GetContext();
+                    Tour currentTour = context.Tours.SingleOrDefault(p => p.Name.ToLower().Contains(filename));
+                    currentTour.ImagePreview = File.ReadAllBytes(image);
+
+                    context.Entry(currentTour).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                  
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+ 
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -35,14 +67,7 @@ namespace ToursAppNet
 
         private void MainFrame_ContentRendered(object sender, EventArgs e)
         {
-            if (MainFrameID.CanGoBack)
-            {
-                BtnBack.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                BtnBack.Visibility = Visibility.Hidden;
-            }
+            BtnBack.Visibility = MainFrameID.CanGoBack ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }

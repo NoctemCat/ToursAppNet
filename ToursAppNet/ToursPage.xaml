@@ -23,7 +23,8 @@
                 <TextBlock Text="Выберите тип:" Width="275" TextAlignment="Right"/>
                 <ComboBox Width="255" Name="ComboType" SelectionChanged="ComboType_SelectionChanged" DisplayMemberPath="Name"/>
             </StackPanel>
-            <CheckBox x:Name="CheckActual" Checked="CheckActual_Checked" Unchecked="CheckActual_Unchecked" Content="Показывать только актуальные туры" HorizontalAlignment="Center" VerticalContentAlignment="Center"/>
+            <CheckBox x:Name="CheckActual" Checked="CheckActual_Checked" Unchecked="CheckActual_Unchecked" 
+                      Content="Показывать только актуальные туры" HorizontalAlignment="Center" VerticalContentAlignment="Center"/>
         </WrapPanel>
 
         <ListView Grid.Row="1" Name="LViewTours" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">

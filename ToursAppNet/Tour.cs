@@ -33,7 +33,7 @@ namespace ToursAppNet
         {
             get
             {
-                return (IsActual) ? "Актуален" : "Завершен";
+                return (IsActual) ? "Актуален" : "Завершен"; 
             }
         }
     
